@@ -1,4 +1,6 @@
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 
 /**
@@ -13,7 +15,8 @@ public class Sieve
         int n = in.nextInt();
 
         // Your work goes here
-        . . .
+
+        
 
 
 
@@ -21,5 +24,11 @@ public class Sieve
 
 
 
+    }
+
+
+    public static Set<Integer> readnums(int n){
+        Set<Integer> nums = new HashSet<>();
+        return nums;
     }
 }
