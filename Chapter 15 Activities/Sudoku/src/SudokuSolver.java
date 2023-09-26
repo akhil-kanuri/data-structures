@@ -37,11 +37,26 @@ public class SudokuSolver {
 
         // create the list of sets for each row (this.rows)
         // ...
-        
+        Set<String> tempRow = new TreeSet<>();
+        for (int row = 0; row < N; row++)  {
+            for (int col = 0; col < N; col++) {
+                tempRow.add(grid[row][col]); 
+                this.rows.tempRow.add(row);
 
+            }
+            
+            
+        }
+        Set<String> tempCol = new TreeSet<>();
         // create the list of sets for each col (this.cols)
         // ...
+        for (int col = 0; col < N; col++) {
+            for (int row = 0; row < N; row++) {
+                tempCol.add(grid[col][row]);
+                this.cols.tempCol.add(col); 
 
+            }
+        }
         // create the list of sets for each square (this.squares)
         /* the squares are added to the list row-by-row:
             0 1 2
@@ -49,9 +64,21 @@ public class SudokuSolver {
             6 7 8
          */
         // ...
-
+        Set<String> squares = new HashSet<>();
+        squares.add();
         // create a hash set for [1..9] (this.nums)
         // ...
+        Set<Integer> nums = new HashSet<>();
+        nums.add(1);
+        nums.add(2);
+        nums.add(3);
+        nums.add(4);
+        nums.add(5);
+        nums.add(6);
+        nums.add(7);
+        nums.add(8);
+        nums.add(9);
+
 
         // visually inspect that all the sets are correct
         for (int row = 0; row < N; row++) {
