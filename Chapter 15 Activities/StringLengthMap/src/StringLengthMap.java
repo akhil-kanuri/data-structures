@@ -17,7 +17,7 @@ public class StringLengthMap
         try (Scanner in = new Scanner(new File(filename)))
         {
 
-            // Create your map here
+            Map<Integer, String> stringLength = new HashMap<>();
             
 
             while (in.hasNext())
@@ -27,7 +27,11 @@ public class StringLengthMap
 
                 // Update the map here
                 // Modify Worked Example 15.1
-                
+                if (stringLength.contains(len))
+                {
+                    stringLength.put(word); 
+
+                }
 
 
             }

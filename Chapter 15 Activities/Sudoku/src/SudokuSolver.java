@@ -37,23 +37,25 @@ public class SudokuSolver {
 
         // create the list of sets for each row (this.rows)
         // ...
-        Set<String> tempRow = new TreeSet<>();
+        
         for (int row = 0; row < N; row++)  {
+            Set<String> tempRow = new TreeSet<>();
             for (int col = 0; col < N; col++) {
                 tempRow.add(grid[row][col]); 
-                this.rows.tempRow.add(row);
+                this.rows.add(tempRow);
 
             }
             
             
         }
-        Set<String> tempCol = new TreeSet<>();
+        
         // create the list of sets for each col (this.cols)
         // ...
         for (int col = 0; col < N; col++) {
+            Set<String> tempCol = new TreeSet<>();
             for (int row = 0; row < N; row++) {
                 tempCol.add(grid[col][row]);
-                this.cols.tempCol.add(col); 
+                this.cols.add(tempCol); 
 
             }
         }
