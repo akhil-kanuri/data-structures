@@ -1,4 +1,5 @@
 import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Scanner;
 /**
  * Implement a to do list. Tasks have a priority between 
@@ -12,7 +13,7 @@ import java.util.Scanner;
 public class ToDoList
 {
     // Instance variable(s)
-    . . .
+    private Queue<Task> toDo;
 
     /**
      * Constructor
@@ -20,7 +21,7 @@ public class ToDoList
     public ToDoList()
     {
         // Complete this
-        . . .
+        toDo = new PriorityQueue<>();
     }
 
     /**
@@ -60,9 +61,17 @@ public class ToDoList
     public void addTask(String optionStr)
     {
         // Complete this method
-        . . .
-            
-            
+        if(!optionStr.substring(4,5).equals("1") && !optionStr.substring(4,5).equals("2") &&
+        !optionStr.substring(4,5).equals("3") && !optionStr.substring(4,5).equals("4") && 
+        !optionStr.substring(4,5).equals("5") &&!optionStr.substring(4,5).equals("6") &&
+        !optionStr.substring(4,5).equals("7") &&!optionStr.substring(4,5).equals("8") &&
+        !optionStr.substring(4,5).equals("9")) {
+            System.out.println("The priority must be an integer between 1 and 9.");
+        }
+        else
+        {
+            toDo.add(new Task(Integer.parseInt(optionStr.substring(4,5)), optionStr.substring(6,optionStr.length())));
+        }
     }
 
     /**
@@ -74,9 +83,11 @@ public class ToDoList
         Task next = null;
         
         // Complete this method
-        . . .
-        
-        
+        if(!toDo.isEmpty())
+            next = toDo.remove();
+        else
+            next = null;
+            
         if (next == null)
         {
             System.out.println("There are no tasks in the list.");
