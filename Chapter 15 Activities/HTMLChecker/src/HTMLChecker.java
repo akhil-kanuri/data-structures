@@ -23,10 +23,7 @@ public class HTMLChecker
         try (Scanner in = new Scanner(new File(filename)))
         {
             // Your code goes here
-<<<<<<< Updated upstream
-            
-=======
-<<<<<<< HEAD
+
             String full = in.next();
             temp = full.substring(1, full.length() - 1);
             tags.push(temp);
@@ -35,10 +32,7 @@ public class HTMLChecker
             {
                // if(!temp.equals("/" + ))
             }
-=======
-            
->>>>>>> 9cd4ce915595d91be2f0b9835be07c3d643a017b
->>>>>>> Stashed changes
+
 
 
         } catch (FileNotFoundException e)
