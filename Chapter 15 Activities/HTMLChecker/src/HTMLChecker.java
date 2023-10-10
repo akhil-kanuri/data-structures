@@ -18,11 +18,27 @@ public class HTMLChecker
     public static void main(String[] args)
     {
         String filename = "src/TagSample1.html";
-
+        Stack<String> tags = new Stack<>();
+        String temp;
         try (Scanner in = new Scanner(new File(filename)))
         {
             // Your code goes here
+<<<<<<< Updated upstream
             
+=======
+<<<<<<< HEAD
+            String full = in.next();
+            temp = full.substring(1, full.length() - 1);
+            tags.push(temp);
+
+            while(in.hasNext())
+            {
+               // if(!temp.equals("/" + ))
+            }
+=======
+            
+>>>>>>> 9cd4ce915595d91be2f0b9835be07c3d643a017b
+>>>>>>> Stashed changes
 
 
         } catch (FileNotFoundException e)
