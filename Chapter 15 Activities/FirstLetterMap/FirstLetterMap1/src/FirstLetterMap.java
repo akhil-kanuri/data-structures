@@ -18,7 +18,9 @@ public class FirstLetterMap
         {
 
             // Create your map here
-            ...
+            //treemap
+            Map<Character, Set<String>> letters = new TreeMap<>();
+
 
             while (in.hasNext())
             {
@@ -27,13 +29,14 @@ public class FirstLetterMap
 
                 // Update the map here
                 // Use the Java 8 merge method
-                . . .
+                
+                //letters.merge();
 
             }
 
             // Print the map here in this form
             // a: [a, able, aardvark]
-            . . .
+            
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);

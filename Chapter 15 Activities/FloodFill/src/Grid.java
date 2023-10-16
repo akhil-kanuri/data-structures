@@ -2,14 +2,14 @@ public class Grid
 {
     private static final int SIZE = 10;
     int[][] pixels = new int[SIZE][SIZE];
-    . . .
+    
 
     /**
      * Flood fill, starting with the given row and column.
     */
     public void floodfill(int row, int column)
     {
-        . . .
+        //I don't know where to start this porgram yet
     }
 
     @Override
