@@ -20,7 +20,21 @@ public class LinkedList
         this.first = null;
     }
 
-
+    public Integer size() {
+        int size = 0;
+        for (int i = 0; i <= this.first.length(); i++) {
+            size += 1;
+        }
+        return size;
+    }
+    public Integer size2() {
+        int size2 = 0;
+        if (this.first.hasNext()) {
+            size2 = size2 + 1;
+            size2();
+        }
+        return size2;
+    }
 
 
     /**
