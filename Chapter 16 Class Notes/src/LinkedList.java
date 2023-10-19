@@ -36,7 +36,21 @@ public class LinkedList
         return size2;
     }
 
+    public boolean contains(Object obj) {
+        for (int i = 0; i <= this.first.length(); i++) {
+            if (i == obj) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
 
+    public boolean contains2(Object obj) {
+        //
+    }
+    
     /**
         Returns the first element in the linked list.
         @return the first element in the linked list
