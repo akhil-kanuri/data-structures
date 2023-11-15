@@ -1,3 +1,5 @@
+import java.nio.channels.NetworkChannel;
+
 /**
     This class implements a binary search tree whose
     nodes hold objects that implement the Comparable
@@ -12,7 +14,7 @@ public class BinarySearchTree
     */
     public BinarySearchTree()
     {   
-        
+        this.root = null;
     }
     
     /**
@@ -21,7 +23,17 @@ public class BinarySearchTree
     */
     public void add(Comparable obj) 
     {   
-        
+        Node node = new Node();
+        newNode.data = obj;
+        newNode.left = null;
+        newNode.right = null; 
+
+        if (this.root == null) {
+            this.root = newNode;
+        }
+        else {
+            this.root.addNode(newNode); 
+        }
     }
 
     /**
@@ -31,6 +43,21 @@ public class BinarySearchTree
     */
     public boolean find(Comparable obj)
     {
+        Node current = this.root;
+
+        while (current != null)
+        {
+            int diff = obj.compareTo(current.data);
+            if (diff == 0){
+                return true;
+            }
+            else if (diff < 0){
+                current = current.left;
+            }
+            else{
+                current = current.right;
+            }
+        }
         return false;
     }
     
@@ -41,7 +68,51 @@ public class BinarySearchTree
     */
     public void remove(Comparable obj)
     {
+        Node toBeRemoved = this.root; 
+        Node parent = null;
+        Boolean found = false;
         
+        while (!found && toBeRemoved != null){
+            int diff = obj.compareTo(toBeRemoved.data);
+            if (diff == 0){
+                found = true;
+            }
+            else {
+                parent = toBeRemoved;
+                if (diff < 0){
+                    toBeRemoved = toBeRemoved.left;
+                }
+                else{
+                    toBeRemoved = toBeRemoved.right;
+                }
+            }
+        }
+        if (!found) {
+            return;
+        }
+        //case 1 and case 2 (At least one child is null)
+        if (toBeRemoved.left == null || toBeRemoved.right == null){
+            Node newChild;
+        }
+
+        if (toBeRemoved.left == null) {
+            newChild = toBeRemoved.right;
+        }
+        else {
+            newChild = toBeRemoved.left;
+        }
+
+        if (parent == null){
+            this.root = newChild;
+            
+        }
+        else if (parent.left == toBeRemoved) {
+            parent.left = newChild;
+        }
+        else {
+            parent.right = newChild;
+        }
+
     }
     
     /**
@@ -67,7 +138,10 @@ public class BinarySearchTree
     */
     static class Node
     {   
-        
+        //BST MUST BE made up of comparable objects
+        public Comparable data;
+        public Node left;
+        public Node right;
 
         /**
             Inserts a new node as a descendant of this node.
@@ -75,7 +149,29 @@ public class BinarySearchTree
         */
         public void addNode(Node newNode)
         {   
-            
+            int diff = newNode.data.compareTo(data);
+            //if diff is less than 0, new node is to the left of this node
+            //if diff > than 0, new node is to the right of this Node
+            if (diff < 0) {
+                if (left == null)
+                {
+                    left = newNode;
+                }
+            else 
+            {
+                left.addNode(newNode); 
+            }
+        }
+            else if (diff > 0) {
+                if (right == null)
+                {
+                    right = newNode;
+                }
+            else 
+            {
+                right.addNode(newNode); 
+            }
+            }
         }
     }
 }
