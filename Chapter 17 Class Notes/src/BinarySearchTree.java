@@ -112,7 +112,27 @@ public class BinarySearchTree
         else {
             parent.right = newChild;
         }
+        return;
+        //remove a node with two children 
 
+        //find the least element of the right subtree
+        Node leastParent = toBeRemoved;
+        Node least = toBeRemoved.right;
+        while (least.left != null){
+            leastParent = least;
+            least = least.left;
+        }
+        //move the data to the node being deleted
+        toBeRemoved.data = least.data;
+
+        //unlink the least child
+        if (leastParent == toBeRemoved) {
+            leastParent.right = least.right; 
+            
+        }
+        else {
+            leastParent.left = leastParent.right;
+        }
     }
     
     /**
@@ -120,7 +140,8 @@ public class BinarySearchTree
     */
     public void print()
     {   
-        
+        print(this.root);
+        System.out.println();
     }   
 
     /**
@@ -129,6 +150,13 @@ public class BinarySearchTree
     */
     private static void print(Node parent)
     {   
+        if (parent == null) {
+            return;
+        }
+
+        print(parent.left);
+        System.out.println(parent.data + " ");
+        print(parent.right);
         
     }
 
