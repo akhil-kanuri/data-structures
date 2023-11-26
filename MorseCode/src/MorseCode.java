@@ -117,12 +117,22 @@ public class MorseCode
         //then add a space
         for (int i = 0; i < text.length(); i++)
         {
+            String s;
             char c = text.charAt(i);
-            String s = codeMap.get(c);
+            String charString=c+"";
+            if (charString.equals(" "))
+            {
+                s = " ";
+            }
+            else{
+                s = codeMap.get(Character.toUpperCase(c));
+            }
+            
             morse.append(s);
-            morse.append(" "); 
+            morse.append(" ");
+            System.out.println("char value is=" + c +"=" + s);
         }
-
+        
         return morse.toString();
     }
 
@@ -136,9 +146,7 @@ public class MorseCode
     {
         StringBuffer text = new StringBuffer(100);
 
-        /*
-            !!! INSERT CODE HERE
-        */
+        
 
         return text.toString();
     }
