@@ -23,7 +23,8 @@ public class LinkedListQueue
     */
     public void firstToLast()
     {
-        . . .
+        tail.add(head.remove());
+        
 
 
 
