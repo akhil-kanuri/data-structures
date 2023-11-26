@@ -84,9 +84,22 @@ public class MorseCode
      */
     private static void treeInsert(char letter, String code)
     {
-        /*
-            !!! INSERT CODE HERE
-        */
+        
+        TreeNode baseValue = new TreeNode(code);
+        decodeTree.setValue(baseValue);
+        for (int i = 0; i < code.length(); i++)
+        {
+            String c = code.charAt(i) + "";
+            if (c.equals("."))
+            {
+                decodeTree.setLeft(baseValue);
+            }
+            else if (c.equals("-")){
+                decodeTree.setRight(baseValue);
+            }
+        }
+        
+
     }
 
     /**
@@ -99,9 +112,16 @@ public class MorseCode
     {
         StringBuffer morse = new StringBuffer(400);
 
-        /*
-            !!! INSERT CODE HERE
-        */
+        //for each character in the string 
+        //get the corrosponding code
+        //then add a space
+        for (int i = 0; i < text.length(); i++)
+        {
+            char c = text.charAt(i);
+            String s = codeMap.get(c);
+            morse.append(s);
+            morse.append(" "); 
+        }
 
         return morse.toString();
     }
