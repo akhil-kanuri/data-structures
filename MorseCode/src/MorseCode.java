@@ -16,6 +16,7 @@ public class MorseCode
         MorseCode.start();  
         System.out.println(MorseCode.encode("Watson come here"));
         BTreePrinter.printNode(decodeTree);
+        System.out.println(MorseCode.decode(".--"));
     }
 
     public static void start()
@@ -85,19 +86,27 @@ public class MorseCode
     private static void treeInsert(char letter, String code)
     {
         
-        TreeNode baseValue = new TreeNode(code);
-        decodeTree.setValue(baseValue);
+        TreeNode baseValue = new TreeNode('\0');
+        
         for (int i = 0; i < code.length(); i++)
         {
             String c = code.charAt(i) + "";
             if (c.equals("."))
             {
-                decodeTree.setLeft(baseValue);
+                if (baseValue.getLeft()==null) {
+                    baseValue.setLeft(new TreeNode('\0'));
+                }
+                baseValue = baseValue.getLeft();
             }
             else if (c.equals("-")){
-                decodeTree.setRight(baseValue);
+                 if (baseValue.getRight()==null) {
+                    baseValue.setRight(new TreeNode('\0'));
+                }
+                baseValue = baseValue.getRight(); 
             }
+            
         }
+            baseValue.setValue(letter);
         
 
     }
@@ -130,7 +139,7 @@ public class MorseCode
             
             morse.append(s);
             morse.append(" ");
-            System.out.println("char value is=" + c +"=" + s);
+            
         }
         
         return morse.toString();
@@ -146,8 +155,22 @@ public class MorseCode
     {
         StringBuffer text = new StringBuffer(100);
 
-        
-
+        String[] tokenStrings = morse.split(" ");
+        for (int i = 0; i < tokenStrings.length; i++)
+        {
+            TreeNode current= decodeTree;
+            
+            String sequence = tokenStrings[i]; //example .-- is the first element
+            for (char c: sequence.toCharArray()) {
+                if (c=='.') {
+                    current= current.getLeft();
+                } else if (c=='-') {
+                    current=current.getRight();    
+                } 
+            
+            }
+            text.append(current.getValue());
+        }
         return text.toString();
     }
 }
