@@ -16,7 +16,7 @@ public class MorseCode
         MorseCode.start();  
         System.out.println(MorseCode.encode("Watson come here"));
         BTreePrinter.printNode(decodeTree);
-        System.out.println(MorseCode.decode(".--"));
+        System.out.println(MorseCode.decode(".-- .-"));
     }
 
     public static void start()
@@ -86,7 +86,7 @@ public class MorseCode
     private static void treeInsert(char letter, String code)
     {
         
-        TreeNode baseValue = new TreeNode('\0');
+        TreeNode baseValue =decodeTree;
         
         for (int i = 0; i < code.length(); i++)
         {
@@ -94,13 +94,13 @@ public class MorseCode
             if (c.equals("."))
             {
                 if (baseValue.getLeft()==null) {
-                    baseValue.setLeft(new TreeNode('\0'));
+                    baseValue.setLeft(new TreeNode(' ', null, null));
                 }
                 baseValue = baseValue.getLeft();
             }
             else if (c.equals("-")){
                  if (baseValue.getRight()==null) {
-                    baseValue.setRight(new TreeNode('\0'));
+                    baseValue.setRight(new TreeNode(' ', null, null));
                 }
                 baseValue = baseValue.getRight(); 
             }
@@ -155,24 +155,26 @@ public class MorseCode
     {
         StringBuffer text = new StringBuffer(100);
 
-        String[] tokenStrings = morse.split(" ");
-        for (int i = 0; i < tokenStrings.length; i++)
-        {
-            TreeNode current= decodeTree;
-            
-            String sequence = tokenStrings[i]; //example .-- is the first element
-            for (char c: sequence.toCharArray()) {
+         TreeNode current= decodeTree;
+
+
+             
+        for (char c: morse.toCharArray()) {
                 if (c=='.') {
                     current= current.getLeft();
                 } else if (c=='-') {
                     current=current.getRight();    
-                } 
+                } else if (c==' '){
+                    text.append(current.getValue());
+                    current=decodeTree;
+                }
             
-            }
-            text.append(current.getValue());
         }
+        text.append(current.getValue());
+       
         return text.toString();
-    }
+    
+}
 }
 
 /**
